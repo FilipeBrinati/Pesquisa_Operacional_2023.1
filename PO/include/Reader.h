@@ -22,8 +22,6 @@ class Reader
         vector<string> getPiece() { return piece; }
 
         void setFname(string n){this->fname = n;}
-        void setContent(vector<vector<string>> n){this->content = n;}
-        void setRow(vector<string> n){this->row = n;}
 
         void read();
         void printContent();
