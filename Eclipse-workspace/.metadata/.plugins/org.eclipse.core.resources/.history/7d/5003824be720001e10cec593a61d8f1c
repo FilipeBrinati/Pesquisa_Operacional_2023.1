@@ -1,0 +1,68 @@
+package src;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Reader {
+    private String fname;
+    private List<List<String>> store;
+    private List<List<String>> content;
+    private List<String> piece;
+    private List<String> row;
+
+    public Reader() {
+        setFname("data/sample.csv");
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public void read() {
+    	try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            boolean isFirstLine = true;
+
+            while ((line = reader.readLine()) != null) {
+                String[] items = line.split(",");
+
+                if (isFirstLine) {
+                    headers.addAll(Arrays.asList(items));
+                    isFirstLine = false;
+                } else {
+                    firstItems.add(items[0]);
+                    matrix.add(Arrays.asList(items).subList(1, items.length));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Could not open the file");
+            e.printStackTrace();
+        }
+    }
+
+    public void printContent() {
+        for (int i = 0; i < store.size(); i++) {
+            for (int j = 0; j < store.get(i).size(); j++) {
+                System.out.print(store.get(i).get(j) + " | ");
+            }
+            System.out.println();
+        }
+
+        for (int i = 0; i < content.size(); i++) {
+            System.out.print(piece.get(i) + " | ");
+            for (int j = 0; j < content.get(i).size(); j++) {
+                System.out.print(content.get(i).get(j) + " | ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Reader reader = new Reader();
+        reader.read();
+        reader.printContent();
+    }
+}

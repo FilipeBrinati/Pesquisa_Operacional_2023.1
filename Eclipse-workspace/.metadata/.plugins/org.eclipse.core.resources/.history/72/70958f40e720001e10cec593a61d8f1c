@@ -1,0 +1,82 @@
+package src;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Reader {
+    private String fname;
+    private List<List<String>> store;
+    private List<List<String>> content;
+    private List<String> piece;
+    private List<String> row;
+
+    public Reader() {
+        setFname("data/sample.csv");
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public void read() {
+        String line;
+        store = new ArrayList<>();
+        content = new ArrayList<>();
+        piece = new ArrayList<>();
+        row = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fname))) {
+            int j = 0;
+            while ((line = reader.readLine()) != null) {
+                int i = 0;
+                row.clear();
+
+                String[] words = line.split(",");
+                for (String w : words) {
+                    if (i == 0 && j != 0) {
+                        piece.add(w);
+                        i++;
+                    } else {
+                        row.add(w);
+                    }
+                }
+
+                if (j == 0) {
+                    store.add(row);
+                } else {
+                    content.add(row);
+                }
+                j++;
+            }
+        } catch (IOException e) {
+            System.out.println("Could not open the file");
+            e.printStackTrace();
+        }
+    }
+
+    public void printContent() {
+        for (int i = 0; i < store.size(); i++) {
+            for (int j = 0; j < store.get(i).size(); j++) {
+                System.out.print(store.get(i).get(j) + " | ");
+            }
+            System.out.println();
+        }
+
+        for (int i = 0; i < content.size(); i++) {
+            System.out.print(piece.get(i) + " | ");
+            for (int j = 0; j < content.get(i).size(); j++) {
+                System.out.print(content.get(i).get(j) + " | ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Reader reader = new Reader();
+        reader.read();
+        reader.printContent();
+    }
+}
