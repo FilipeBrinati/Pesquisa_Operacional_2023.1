@@ -30,6 +30,7 @@ public class Reader {
     public void setMatrix(List<List<String>> matrix) {this.matrix = matrix;}
     public void setPreco(List<List<String>> preco) {this.preco = preco;}
     public void setTempo(List<List<String>> tempo) {this.tempo = tempo;}
+    public void setRestricao(List<List<String>> restricao) {this.restricao = restricao;}
 
 
     public Reader() {
