@@ -111,18 +111,6 @@ public class Reader {
         //printDoubleArray(array);
         return array;
     }
-    
-    private static void printDoubleArray(double[][] array) {
-        int numRows = array.length;
-        int numCols = array[0].length;
-
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                System.out.print(array[i][j] + " ");
-            }
-            System.out.println("\n");
-        }
-    }
 
     
     public void printData() {
@@ -144,11 +132,5 @@ public class Reader {
         for (List<String> row : restricao) {
             System.out.println(row);
         }
-    }
-
-    public static void main(String[] args) {
-        Reader reader = new Reader("data/sample1.csv");
-        reader.read();
-        reader.printData();
     }
 }

@@ -6,11 +6,6 @@ import ilog.cplex.*;
 public class CplexSolver {
 	public CplexSolver() {}
 	
-	private static double convertToBoolean(IloNumVar variable, IloCplex cplex) throws IloException {
-	    double value = cplex.getValue(variable);
-	    return value;
-	}
-	
 	private static double getMaxProduct(double[][] array, double[][] res, int numPecas) {
 		double maxProduct = 0.0;
 
@@ -81,7 +76,6 @@ public class CplexSolver {
                 IloNumExpr sumX = cplex.constant(0);
                 for (int j = 0; j < numFornecedores; j++) {
                     sumX = cplex.sum(sumX, x[i][j]);
-                    System.out.println(sumX);
                 }
                 cplex.addEq(sumX, restricaoArray[i][0]);
             }			
@@ -89,7 +83,10 @@ public class CplexSolver {
 			// Solve the model
             if (cplex.solve()) {
                 System.out.println("Objective value: " + cplex.getObjValue());
-                
+                /*
+                Creator c = new Creator();
+                c.createArquive(cplex);
+                */
                 // Print the values of xij
                 for (int i = 0; i < numPecas; i++) {
                     for (int j = 0; j < numFornecedores; j++) {
@@ -108,83 +105,6 @@ public class CplexSolver {
 		}
 		return null;
 	}
-	
-	public static void main(String[] args) {
-		Reader reader = new Reader("data/sampleErrada.csv");
-        reader.read();
-        reader.printData();
-        CplexSolver m = new CplexSolver();
-        IloCplex n = m.solver(reader);
-	}
-	
-    public static void function(String[] args) {
-        try {
-            IloCplex cplex = new IloCplex();
-            
-            // Variables
-            int numPecas = 10;  // Number of pieces
-            int numFornecedores = 5;  // Number of suppliers
-            
-            IloNumVar[][] x = new IloNumVar[numPecas][numFornecedores];
-            
-            for (int i = 0; i < numPecas; i++) {
-                for (int j = 0; j < numFornecedores; j++) {
-                    x[i][j] = cplex.boolVar("x_" + i + "_" + j);
-                }
-            }
-            
-            // Objective function
-            IloNumExpr objective = cplex.constant(0);
-            double[] Hi = {5, 3, 4, 2, 1};  // Array of Hi values
-            double[] Pij = {10, 8, 6, 4, 2};  // Array of Pij values
-            double[] Tij = {7, 6, 5, 4, 3};  // Array of Tij values
-            double S = 0.5;  // S value
-            
-            for (int i = 0; i < numPecas; i++) {
-                for (int j = 0; j < numFornecedores; j++) {
-                    IloNumExpr term1 = cplex.prod(x[i][j], Hi[j] * Pij[j]);
-                    IloNumExpr term2 = cplex.prod(x[i][j], Tij[j] * Hi[j]);
-                    objective = cplex.sum(objective, cplex.sum(term1, term2));
-                }
-            }
-            
-            cplex.addMinimize(objective);
-            
-            // Constraints
-            for (int i = 0; i < numPecas; i++) {
-                IloNumExpr sumX = cplex.constant(0);
-                for (int j = 0; j < numFornecedores; j++) {
-                    sumX = cplex.sum(sumX, x[i][j]);
-                }
-                cplex.addEq(sumX, 1);
-            }
-            
-            for (int i = 0; i < numPecas; i++) {
-                for (int j = 0; j < numFornecedores; j++) {
-                    cplex.addEq(x[i][j], Hi[j]);
-                }
-            }
-            
-            // Solve the model
-            if (cplex.solve()) {
-                System.out.println("Objective value: " + cplex.getObjValue());
-                
-                // Print the values of xij
-                for (int i = 0; i < numPecas; i++) {
-                    for (int j = 0; j < numFornecedores; j++) {
-                        System.out.println("x_" + i + "_" + j + " = " + cplex.getValue(x[i][j]));
-                    }
-                }
-            } else {
-                System.out.println("No solution found");
-            }
-            
-            cplex.end();
-            
-        } catch (IloException e) {
-            e.printStackTrace();
-        }
-    }
 }
 
 
