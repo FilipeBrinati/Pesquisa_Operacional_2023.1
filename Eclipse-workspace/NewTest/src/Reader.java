@@ -22,6 +22,7 @@ public class Reader {
     public List<List<String>> getMatrix() {return matrix;}
     public List<List<String>> getPreco() {return preco;}
     public List<List<String>> getTempo() {return tempo;}
+    public List<List<String>> getRestricao() {return restricao;}
 
     public void setFilePath(String filePath) {this.filePath = filePath;}
     public void setHeaders(List<String> headers) {this.headers = headers;}
@@ -96,6 +97,34 @@ public class Reader {
         }
     }
 
+    public double[][] convertToDoubleArray(List<List<String>> list) {
+        int numRows = list.size();
+        int numCols = list.get(0).size();
+
+        double[][] array = new double[numRows][numCols];
+        for (int i = 0; i < numRows; i++) {
+            List<String> row = list.get(i);
+            for (int j = 0; j < numCols; j++) {
+                array[i][j] = Double.parseDouble(row.get(j));
+            }
+        }
+        //printDoubleArray(array);
+        return array;
+    }
+    
+    private static void printDoubleArray(double[][] array) {
+        int numRows = array.length;
+        int numCols = array[0].length;
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println("\n");
+        }
+    }
+
+    
     public void printData() {
         System.out.println("Headers: " + headers);
         System.out.println("First Items: " + firstItems);
