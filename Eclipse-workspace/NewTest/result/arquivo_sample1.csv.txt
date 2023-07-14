@@ -1,0 +1,42 @@
+Objective value: 1875.6
+x_0_0 = 1.0
+x_0_1 = 0.0
+x_0_2 = 0.0
+x_1_0 = 1.0
+x_1_1 = 0.0
+x_1_2 = 0.0
+x_2_0 = 1.0
+x_2_1 = 0.0
+x_2_2 = 0.0
+x_3_0 = 0.0
+x_3_1 = 0.0
+x_3_2 = 0.0
+x_4_0 = 0.0
+x_4_1 = 0.0
+x_4_2 = 0.0
+x_5_0 = 0.0
+x_5_1 = 0.0
+x_5_2 = 0.0
+x_6_0 = 1.0
+x_6_1 = 0.0
+x_6_2 = 0.0
+x_7_0 = 1.0
+x_7_1 = 0.0
+x_7_2 = 0.0
+x_8_0 = 0.0
+x_8_1 = 0.0
+x_8_2 = 0.0
+x_9_0 = 1.0
+x_9_1 = 0.0
+x_9_2 = 0.0
+x_10_0 = 0.0
+x_10_1 = 0.0
+x_10_2 = 0.0
+
+------------------------------------------------------------------------------------------
+Atuador da embreagem -> Fornecedor:  F1; Preco: 177.65; Tempo de Entrega: 10.0 dias 
+Capo -> Fornecedor:  F1; Preco: 577.76; Tempo de Entrega: 10.0 dias 
+Painel dianteiro -> Fornecedor:  F1; Preco: 239.41; Tempo de Entrega: 28.0 dias 
+Grade lateral -> Fornecedor:  F1; Preco: 17.2; Tempo de Entrega: 4.0 dias 
+Grade Inferior -> Fornecedor:  F1; Preco: 58.63; Tempo de Entrega: 4.0 dias 
+Paralama -> Fornecedor:  F1; Preco: 109.45; Tempo de Entrega: 4.0 dias 
