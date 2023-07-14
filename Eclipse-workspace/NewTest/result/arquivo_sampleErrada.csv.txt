@@ -1,0 +1,9 @@
+Objective value: 4453.5
+x_0_0 = 1.0
+x_0_1 = 0.0
+x_1_0 = 0.0
+x_1_1 = 1.0
+
+------------------------------------------------------------------------------------------
+Atuador da embreagem -> Fornecedor:  F1; Preco: 1400.0; Tempo de Entrega: 10.0
+Capo -> Fornecedor:  F2; Preco: 3000.0; Tempo de Entrega: 16.0

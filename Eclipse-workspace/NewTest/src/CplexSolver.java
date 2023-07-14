@@ -93,6 +93,7 @@ public class CplexSolver {
                         System.out.println("x_" + i + "_" + j + " = " + cplex.getValue(x[i][j]));
                     }
                 }
+                ResultArq o = new ResultArq(read, cplex, x);
             } else {
                 System.out.println("No solution found");
             }
