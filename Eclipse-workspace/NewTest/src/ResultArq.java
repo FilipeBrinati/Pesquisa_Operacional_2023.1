@@ -48,7 +48,7 @@ public class ResultArq {
             		String aux = headers.get(2*j + 1);
             		substringRemover = "Preco";
             		aux = aux.replace(substringRemover, "");
-            		conteudo += aux + "; Preco: " + precoArray[i][j] + "; Tempo de Entrega: " + tempoArray[i][j] + "\n";	
+            		conteudo += aux + "; Preco: " + precoArray[i][j] + "; Tempo de Entrega: " + tempoArray[i][j] + " dias \n";	
             	}
             }
         }
